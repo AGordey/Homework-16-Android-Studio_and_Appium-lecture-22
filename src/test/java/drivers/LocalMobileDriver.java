@@ -62,5 +62,4 @@ public class LocalMobileDriver implements WebDriverProvider {
         }
         return app;
     }
-
 }
