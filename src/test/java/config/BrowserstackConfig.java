@@ -1,9 +1,9 @@
-package tests.config;
+package config;
 
 import org.aeonbits.owner.Config;
 @Config.Sources ({
       // "system:properties",
-        "classpath:BrowserStack.properties"
+        "classpath:BrowserStackMobileDriver.properties"
 })
 public interface BrowserstackConfig extends Config {
 
@@ -16,16 +16,8 @@ public interface BrowserstackConfig extends Config {
     String key();
 
     @Key("appinbrowserstack")
-    @DefaultValue("bs://c700ce60cf13ae8ed97705a55b8e022f13c5827c")
+    @DefaultValue("bs://15bddad35bfca1563c8ef20c6e7ce50db858f4cf")
     String appinbrowserstack();
-
-    @Key("deviceinbrowserstack")
-    @DefaultValue("Google Pixel 3")
-    String deviceinbrowserstack();
-
-    @Key("os_versioninbrowserstack")
-    @DefaultValue("9.0")
-    String os_versioninbrowserstack();
 
     @Key("projectinbrowserstack")
     @DefaultValue("QA.GURU lesson 21 Andrey G")

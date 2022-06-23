@@ -1,9 +1,8 @@
-package tests.local;
+package tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import drivers.BrowserstackMobileDriver;
-import drivers.LocalMobileDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -18,7 +17,7 @@ import static io.qameta.allure.Allure.step;
 public class TestBase {
     @BeforeAll
     public static void setup() {
-        Configuration.browser = LocalMobileDriver.class.getName();
+        Configuration.browser = BrowserstackMobileDriver.class.getName();
         Configuration.browserSize = null;
     }
 
@@ -37,5 +36,8 @@ public class TestBase {
         Attach.pageSource();
 
         step("Close driver", Selenide::closeWebDriver);
+
+        Attach.video(sessionId);
+
     }
 }
