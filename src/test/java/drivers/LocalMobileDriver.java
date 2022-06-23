@@ -1,9 +1,11 @@
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
+import config.EnviromentConfig;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
+import org.aeonbits.owner.ConfigFactory;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 
@@ -19,11 +21,14 @@ public class LocalMobileDriver implements WebDriverProvider {
 
     public static URL getAppiumServerUrl() {
         try {
-            return new URL("http://localhost:4723/wd/hub");
+            return new URL(config2.HostUrl());
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
     }
+
+    static EnviromentConfig config2 = ConfigFactory
+            .create(EnviromentConfig.class, System.getProperties());
 
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
@@ -33,9 +38,8 @@ public class LocalMobileDriver implements WebDriverProvider {
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setPlatformName("Android");
-        options.setDeviceName("SBXDU19708001078");
-//        options.setDeviceName("Pixel 4 API 30");
-        options.setPlatformVersion("10.0");
+        options.setDeviceName(config2.DeviceName());
+        options.setPlatformVersion(config2.PlatformVersion());
         options.setApp(app.getAbsolutePath());
         options.setAppPackage("org.wikipedia.alpha");
         options.setAppActivity("org.wikipedia.main.MainActivity");

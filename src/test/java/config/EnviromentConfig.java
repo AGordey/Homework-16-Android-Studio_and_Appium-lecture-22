@@ -11,9 +11,9 @@ public interface EnviromentConfig extends Config {
     @DefaultValue("Google Pixel 3")
     String DeviceName();
 
-    @Key("AndroidVersion")
+    @Key("PlatformVersion")
     @DefaultValue("9.0")
-    String AndroidVersion();
+    String PlatformVersion();
 
     @Key("HostUrl")
     @DefaultValue("http://hub.browserstack.com/wd/hub")
